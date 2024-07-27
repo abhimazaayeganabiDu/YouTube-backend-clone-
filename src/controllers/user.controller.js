@@ -248,7 +248,7 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
     }
 
     user.password = newPassword
-    await user.saveA({ validateBeforeSave: false })
+    await user.save({ validateBeforeSave: false })
 
     return res
         .status(200)
@@ -338,7 +338,7 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
 })
 
 
-const getUseChannelProfile = asyncHandler(async (req, res) => {
+const getUserChannelProfile = asyncHandler(async (req, res) => {
     const { username } = req.params
 
     if (!username?.trim()) {
@@ -398,6 +398,7 @@ const getUseChannelProfile = asyncHandler(async (req, res) => {
             }
         }
     ])
+
 
     if (!channel?.length) {
         throw new ApiError(404, "Channel does not exists")
@@ -473,6 +474,6 @@ export {
     updateAccountDetails,
     updateUserAvatar,
     updateUserCoverImage,
-    getUseChannelProfile,
+    getUserChannelProfile,
     getWatchHistory
 }
